@@ -16,7 +16,6 @@ public class Move : MonoBehaviour
     public int jumptimer;
     int i = 0;
 
-
     public float move;
     public float jump;
 
@@ -54,23 +53,27 @@ public class Move : MonoBehaviour
         }
 
 
-        if (jump != 0 && grounded)
-        {
-            Saut = jump * JumpSpeed;
+         if (jump != 0 && grounded)
+         {
+            rigidbody2D.AddForce(new Vector2(0, 1000), new ForceMode2D());
             grounded = false;
-        }
-        if (Saut > 0)
-        {
-            i++;
-            if (i == jumptimer)
-            {
-                Saut = 0;
-                i = 0;
-            }
-            
-        }
+         }
+         if (Saut > 0)
+         {
+             i++;
+             if (i == jumptimer)
+             {
+                 Saut = 0;
+                 i = 0;
+             }
 
-        rigidbody2D.velocity = new Vector3(move * maxSpeed, Saut);
+         }
+         
+       /* if (Input.GetKeyDown("space"))
+        {
+            rigidbody2D.AddForce(new Vector2(0, 1000), new ForceMode2D());
+        }*/
+        rigidbody2D.velocity = new Vector3(move * maxSpeed, rigidbody2D.velocity.y);
 
 
 
